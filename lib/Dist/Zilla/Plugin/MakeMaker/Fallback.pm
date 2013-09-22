@@ -44,10 +44,12 @@ __PACKAGE__->meta->make_immutable;
 
 =pod
 
+=for Pod::Coverage before_build build test
+
 =head1 SYNOPSIS
 
 In your F<dist.ini>, when you want to ship a F<Build.PL> as well as a fallback
-F<Makefile.PL> in case the user's cpan client is so old it doesn't recognize
+F<Makefile.PL> in case the user's C<cpan> client is so old it doesn't recognize
 C<configure_requires>:
 
     [MakeMaker::Fallback]
@@ -63,6 +65,8 @@ your dist, with an added preamble that is printed when it is run:
 {{ $DATA }}
 
 =back
+
+=for stopwords functionalities
 
 Additionally, the C<build> and C<test> functionalities of the plugin
 (C<< perl Makefile.PL && make >> and C<< make test >> respectively) are disabled.
@@ -80,6 +84,8 @@ Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Di
 I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =head1 ACKNOWLEDGEMENTS
+
+=for stopwords Peter Rabbitson ribasushi Matt Trout mst
 
 Peter Rabbitson (ribasushi), whose concerns that low-level utility modules
 were shipping with install tools that did not work out of the box with perls
