@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package Dist::Zilla::Plugin::MakeMaker::Fallback;
-# ABSTRACT: ...
+# ABSTRACT: Generate a Makefile.PL containing a warning for legacy users
 # vim: set ts=8 sw=4 tw=78 et :
 
 use Moose;
@@ -46,23 +46,30 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 SYNOPSIS
 
-    use Dist::Zilla::Plugin::MakeMaker::Fallback;
+In your F<dist.ini>, when you want to ship a F<Build.PL> as well as a fallback
+F<Makefile.PL> in case the user's cpan client is so old it doesn't recognize
+C<configure_requires>:
 
-    ...
+    [MakeMaker::Fallback]
+    [ModuleBuildTiny]
 
 =head1 DESCRIPTION
 
-...
-
-=head1 FUNCTIONS/METHODS
+This plugin is a derivative of C<[MakeMaker]>, generating a F<Makefile.PL> in
+your dist, with an added preamble that is printed when it is run:
 
 =over 4
 
-=item * C<foo>
-
-...
+{{ $DATA }}
 
 =back
+
+Additionally, the C<build> and C<test> functionalities of the plugin
+(C<< perl Makefile.PL && make >> and C<< make test >> respectively) are disabled.
+
+It is a fatal error to use this plugin when there is not also another
+C<InstallTool> plugin installed (for example, C<[ModuleBuildTiny]>, that must
+not also generate a F<Makefile.PL>.
 
 =head1 SUPPORT
 
@@ -74,7 +81,12 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =head1 ACKNOWLEDGEMENTS
 
-Peter Rabbitson (ribasushi), whose persistent ...
+Peter Rabbitson (ribasushi), whose concerns that low-level utility modules
+were shipping with install tools that did not work out of the box with perls
+5.6 and 5.8 inspired the creation of this module.
+
+Matt Trout (mst), for realizing a simple warning would be sufficient, rather
+than a complicated detection heuristic, as well as the text of the warning
 
 =head1 SEE ALSO
 
