@@ -102,6 +102,8 @@ than a complicated detection heuristic, as well as the text of the warning
 
 =end :list
 
+=for stopwords cpanminus
+
 =cut
 __DATA__
 *** WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING ***
