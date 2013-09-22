@@ -72,7 +72,7 @@ Additionally, the C<build> and C<test> functionalities of the plugin
 (C<< perl Makefile.PL && make >> and C<< make test >> respectively) are disabled.
 
 It is a fatal error to use this plugin when there is not also another
-C<InstallTool> plugin installed (for example, C<[ModuleBuildTiny]>, that must
+C<InstallTool> plugin installed (for example, C<[ModuleBuildTiny]>), that must
 not also generate a F<Makefile.PL>.
 
 =head1 SUPPORT
