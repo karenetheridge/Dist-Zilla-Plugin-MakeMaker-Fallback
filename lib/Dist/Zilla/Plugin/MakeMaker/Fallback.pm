@@ -62,6 +62,8 @@ your dist, with an added preamble that is printed when it is run:
 
 =over 4
 
+=for comment This section was inserted from the DATA section at build time
+
 {{ $DATA }}
 
 =back
