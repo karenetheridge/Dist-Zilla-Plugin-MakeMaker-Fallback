@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 # VERSION
 
-version 0.001
+version 0.002
 
 # SYNOPSIS
 
@@ -47,7 +47,7 @@ Additionally, the `build` and `test` functionalities of the plugin
 (`perl Makefile.PL && make` and `make test` respectively) are disabled.
 
 It is a fatal error to use this plugin when there is not also another
-`InstallTool` plugin installed (for example, `[ModuleBuildTiny]`, that must
+`InstallTool` plugin installed (for example, `[ModuleBuildTiny]`), that must
 not also generate a `Makefile.PL`.
 
 # SUPPORT
