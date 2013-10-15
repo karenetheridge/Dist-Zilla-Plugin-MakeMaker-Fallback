@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - only display the warning if configure_require prereqs are
+            genuinely missing (the user may have explicitly chosen to run
+            Makefile.PL) (RT#89434)
 
 0.002     2013-09-25 02:15:24Z (Karen Etheridge)
           - bump up dependency on [MakeMaker::Awesome] to avoid missing lib
