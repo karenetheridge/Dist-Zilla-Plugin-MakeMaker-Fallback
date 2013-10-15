@@ -34,7 +34,7 @@ around _build_MakeFile_PL_template => sub
             : ()
     } keys %$configure_requires;
 
-    my $code = <<'CODE'
+    my $code = <<"CODE"
 BEGIN {
 my %configure_requires = (
 CODE
@@ -46,15 +46,11 @@ CODE
     . <<'CODE'
 );
 
-my @missing = grep {
+my @missing_configure_requires = grep {
     ! eval "require $_; $_->VERSION($configure_requires{$_}); 1"
 } keys %configure_requires;
 
-if (not @missing)
-{
-    print "Congratulations, your toolchain understands 'configure_requires'!\n\n";
-}
-else
+if (@missing_configure_requires)
 {
     warn <<'EOW';
 CODE
@@ -152,23 +148,23 @@ for that...)
 __DATA__
 *** WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING ***
 
-If you're seeing this warning, your toolchain is really, really old and you'll
-almost certainly have problems installing CPAN modules from this century. But
-never fear, dear user, for we have the technology to fix this!
+The following configuration prerequisites are not available:
 
-If you're using CPAN.pm to install things, then you can upgrade it using:
+    @missing_configure_requires
+
+Please install this/these module(s) manually.
+
+If you're using a recent version of CPAN.pm, CPANPLUS, or cpanminus to
+install things, then it's likely that a previous installation attempt
+failed.
+
+If you're using CPAN.pm or CPANPLUS to install things, and happen
+to have an old version of it, then you should try upgrading it
+using:
 
     cpan CPAN
 
-If you're using CPANPLUS to install things, then you can upgrade it using:
+respective
 
     cpanp CPANPLUS
 
-If you're using cpanminus, you shouldn't be seeing this message in the first
-place, so please file an issue on github.
-
-If you're installing manually, please retrain your fingers to run Build.PL
-when present instead.
-
-This public service announcement was brought to you by the Perl Toolchain
-Gang, the irc.perl.org #toolchain IRC channel, and the number 42.
