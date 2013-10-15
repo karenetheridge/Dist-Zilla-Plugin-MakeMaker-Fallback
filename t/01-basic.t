@@ -12,7 +12,7 @@ use File::Spec;
 
 {
     my $tzil = Builder->from_config(
-        { dist_root => 't/corpus/basic' },
+        { dist_root => 't/does_not_exist' },
         {
             add_files => {
                 'source/dist.ini' => simple_ini(
@@ -31,7 +31,7 @@ use File::Spec;
 
 {
     my $tzil = Builder->from_config(
-        { dist_root => 't/corpus/basic' },
+        { dist_root => 't/does_not_exist' },
         {
             add_files => {
                 'source/dist.ini' => simple_ini(
@@ -74,15 +74,16 @@ use File::Spec;
 
 {
     my $tzil = Builder->from_config(
-        { dist_root => 't/corpus/basic' },
+        { dist_root => 't/does_not_exist' },
         {
             add_files => {
                 'source/dist.ini' => simple_ini(
+                    [ 'GatherDir' ],
                     [ 'MakeMaker::Fallback' ],
                     [ 'ModuleBuildTiny' ],
                     [ 'MetaJSON' ],         # MBT requires a META.* file
                 ),
-                path(qw(t/test.t)) => "use Test::More tests => 1; pass('passing test');\n",
+                path(qw(source/t/test.t)) => "use Test::More tests => 1; pass('passing test');\n",
             },
         },
     );
