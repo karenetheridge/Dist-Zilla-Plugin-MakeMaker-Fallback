@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 # VERSION
 
-version 0.002
+version 0.003
 
 # SYNOPSIS
 
@@ -64,6 +64,8 @@ were shipping with install tools that did not work out of the box with perls
 
 Matt Trout (mst), for realizing a simple warning would be sufficient, rather
 than a complicated detection heuristic, as well as the text of the warning
+(but it turns out that we still need a _simple_ detection heuristic, so -0.5
+for that...)
 
 # SEE ALSO
 

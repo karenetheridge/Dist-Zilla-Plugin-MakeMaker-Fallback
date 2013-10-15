@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.003     2013-10-15 01:26:28Z (Karen Etheridge)
           - only display the warning if configure_require prereqs are
             genuinely missing (the user may have explicitly chosen to run
             Makefile.PL) (RT#89434)
