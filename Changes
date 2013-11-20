@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.004     2013-11-20 21:49:00Z
           - tighten up the interactive terminal detection logic
 
 0.003     2013-10-15 01:26:28Z (Karen Etheridge)

@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 # VERSION
 
-version 0.003
+version 0.004
 
 # SYNOPSIS
 
@@ -12,8 +12,8 @@ In your `dist.ini`, when you want to ship a `Build.PL` as well as a fallback
 `Makefile.PL` in case the user's `cpan` client is so old it doesn't recognize
 `configure_requires`:
 
-    [MakeMaker::Fallback]
     [ModuleBuildTiny]
+    [MakeMaker::Fallback]
 
 # DESCRIPTION
 
