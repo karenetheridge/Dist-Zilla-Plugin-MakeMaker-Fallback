@@ -90,8 +90,8 @@ In your F<dist.ini>, when you want to ship a F<Build.PL> as well as a fallback
 F<Makefile.PL> in case the user's C<cpan> client is so old it doesn't recognize
 C<configure_requires>:
 
-    [MakeMaker::Fallback]
     [ModuleBuildTiny]
+    [MakeMaker::Fallback]
 
 =head1 DESCRIPTION
 
