@@ -30,7 +30,7 @@ around _build_MakeFile_PL_template => sub
     # those out for now, as this shouldn't occur that frequently.
     my %check_modules = map {
         version::is_strict($configure_requires->{$_})
-            ? ($_ => $configure_requires->{$_})
+            ? ( $_ => $configure_requires->{$_} )
             : ()
     } keys %$configure_requires;
 
@@ -39,9 +39,7 @@ BEGIN {
 my %configure_requires = (
 CODE
         . join('', map {
-                $configure_requires->{$_} !~ m/[^0-9.]/
-                    ? "    '$_' => '$configure_requires->{$_}',\n"
-                    : ()
+                "    '$_' => '$configure_requires->{$_}',\n"
             } keys %$configure_requires)
     . <<'CODE'
 );
