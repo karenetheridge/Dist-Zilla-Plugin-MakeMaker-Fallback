@@ -57,7 +57,7 @@ else
     warn <<'EOW';
 CODE
         . join('', <DATA>)
-        . "\nEOW\n\n    sleep 10 if -t STDIN;\n}\n}\n\n";
+        . "\nEOW\n\n    sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));\n}\n}\n\n";
 
     my $string = $self->$orig(@_);
 
