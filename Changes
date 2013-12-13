@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - warnings can now be bypassed entirely with the
+            PERL_MM_FALLBACK_SILENCE_WARNING environment variable
 
 0.004     2013-11-20 21:49:00Z
           - tighten up the interactive terminal detection logic
