@@ -54,7 +54,7 @@ if (not @missing)
 }
 else
 {
-    warn <<'EOW';
+    $ENV{PERL_MM_FALLBACK_SILENCE_WARNING} or warn <<'EOW';
 CODE
         . join('', <DATA>)
         . "\nEOW\n\n    sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));\n}\n}\n\n";
@@ -150,7 +150,7 @@ for that...)
 __DATA__
 *** WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING ***
 
-If you're seeing this warning, your toolchain is really, really old and you'll
+If you're seeing this warning, your toolchain is really, really old* and you'll
 almost certainly have problems installing CPAN modules from this century. But
 never fear, dear user, for we have the technology to fix this!
 
@@ -170,3 +170,9 @@ when present instead.
 
 This public service announcement was brought to you by the Perl Toolchain
 Gang, the irc.perl.org #toolchain IRC channel, and the number 42.
+
+----
+
+* Alternatively, you are doing something overly clever, in which case you may
+wish to silence this warning for future installations by setting the
+PERL_MM_FALLBACK_SILENCE_WARNING environment variable.
