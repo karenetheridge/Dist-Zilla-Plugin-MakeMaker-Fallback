@@ -16,7 +16,7 @@ sub after_build
     my $self = shift;
 
     my @installers = grep { $_->name eq 'Makefile.PL' or $_->name eq 'Build.PL' } @{ $self->zilla->files };
-    @installers > 1 or $self->log_fatal('another InstallTool plugin is required!');
+    @installers > 1 or $self->log_fatal('No Build.PL found to fall back from!');
 }
 
 around _build_MakeFile_PL_template => sub

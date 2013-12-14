@@ -32,7 +32,7 @@ use File::Spec;
 
     like(
         exception { $tzil->build },
-        qr/\Q[MakeMaker::Fallback] another InstallTool plugin is required!\E/,
+        qr/\Q[MakeMaker::Fallback] No Build.PL found to fall back from!\E/,
         'build aborted when no additional installer is provided',
     );
 }
