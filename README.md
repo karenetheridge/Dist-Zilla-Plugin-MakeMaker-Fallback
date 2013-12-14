@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 # VERSION
 
-version 0.004
+version 0.005
 
 # SYNOPSIS
 
@@ -22,7 +22,7 @@ your dist, with an added preamble that is printed when it is run:
 
     \*\*\* WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING \*\*\*
 
-    If you're seeing this warning, your toolchain is really, really old and you'll
+    If you're seeing this warning, your toolchain is really, really old\* and you'll
     almost certainly have problems installing CPAN modules from this century. But
     never fear, dear user, for we have the technology to fix this!
 
@@ -42,6 +42,15 @@ your dist, with an added preamble that is printed when it is run:
 
     This public service announcement was brought to you by the Perl Toolchain
     Gang, the irc.perl.org \#toolchain IRC channel, and the number 42.
+
+    \----
+
+    \* Alternatively, you are doing something overly clever, in which case you
+    should consider setting the 'prefer\_installer' config option in CPAN.pm, or
+    'prefer\_makefile' in CPANPLUS, to 'mb" and '0' respectively.
+
+    You can also silence this warning for future installations by setting the
+    PERL\_MM\_FALLBACK\_SILENCE\_WARNING environment variable.
 
 Additionally, the `build` and `test` functionalities of the plugin
 (`perl Makefile.PL && make` and `make test` respectively) are disabled.
@@ -69,7 +78,7 @@ for that...)
 
 # SEE ALSO
 
-- [Dist::Zilla::Plugin::ModuleBuildTiny](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::ModuleBuildTiny)
+- [Dist::Zilla::Plugin::ModuleBuildTiny](https://metacpan.org/pod/Dist::Zilla::Plugin::ModuleBuildTiny)
 
 # AUTHOR
 
