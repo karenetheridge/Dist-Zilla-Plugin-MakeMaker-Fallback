@@ -6,16 +6,16 @@ package Dist::Zilla::Plugin::MakeMaker::Fallback;
 
 use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.13' };
-with 'Dist::Zilla::Role::BeforeBuild';
+with 'Dist::Zilla::Role::AfterBuild';
 
 use version;
 use namespace::autoclean;
 
-sub before_build
+sub after_build
 {
     my $self = shift;
 
-    my @installers = @{$self->zilla->plugins_with(-InstallTool)};
+    my @installers = grep { $_->name eq 'Makefile.PL' or $_->name eq 'Build.PL' } @{ $self->zilla->files };
     @installers > 1 or $self->log_fatal('another InstallTool plugin is required!');
 }
 
@@ -82,7 +82,7 @@ __PACKAGE__->meta->make_immutable;
 
 =pod
 
-=for Pod::Coverage before_build build test
+=for Pod::Coverage after_build build test
 
 =head1 SYNOPSIS
 

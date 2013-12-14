@@ -11,12 +11,20 @@ use File::Find;
 use File::Spec;
 
 {
+    package Dist::Zilla::Plugin::BogusInstaller;
+    use Moose;
+    with 'Dist::Zilla::Role::InstallTool';
+    sub setup_installer { }
+}
+
+{
     my $tzil = Builder->from_config(
         { dist_root => 't/does_not_exist' },
         {
             add_files => {
                 'source/dist.ini' => simple_ini(
-                    [ 'MakeMaker::Fallback' ],
+                    'BogusInstaller',
+                    'MakeMaker::Fallback',
                 ),
             },
         },
