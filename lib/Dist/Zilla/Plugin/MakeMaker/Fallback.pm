@@ -144,7 +144,7 @@ for that...)
 
 =end :list
 
-=for stopwords cpanminus
+=for stopwords cpanminus mb
 
 =cut
 __DATA__
@@ -173,6 +173,9 @@ Gang, the irc.perl.org #toolchain IRC channel, and the number 42.
 
 ----
 
-* Alternatively, you are doing something overly clever, in which case you may
-wish to silence this warning for future installations by setting the
+* Alternatively, you are doing something overly clever, in which case you
+should consider setting the 'prefer_installer' config option in CPAN.pm, or
+'prefer_makefile' in CPANPLUS, to 'mb" and '0' respectively.
+
+You can also silence this warning for future installations by setting the
 PERL_MM_FALLBACK_SILENCE_WARNING environment variable.
