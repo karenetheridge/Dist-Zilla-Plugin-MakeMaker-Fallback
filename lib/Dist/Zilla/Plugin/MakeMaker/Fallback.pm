@@ -106,14 +106,16 @@ your dist, with an added preamble that is printed when it is run:
 
 =back
 
-=for stopwords functionalities
+=for stopwords functionalities ModuleBuildTiny
 
 Additionally, the C<build> and C<test> functionalities of the plugin
-(C<< perl Makefile.PL && make >> and C<< make test >> respectively) are disabled.
+(C<< perl Makefile.PL && make >> and C<< make test >> respectively) are
+disabled, making it convenient to develop under multiple installer plugins,
+without C<dzil test> running tests twice.
 
 It is a fatal error to use this plugin when there is not also another
-C<InstallTool> plugin installed (for example, C<[ModuleBuildTiny]>), that must
-not also generate a F<Makefile.PL>.
+plugin enabled that generates a F<Build.PL> (such as
+L<[ModuleBuildTiny]|Dist::Zilla::Plugin::ModuleBuildTiny>).
 
 =head1 SUPPORT
 
