@@ -28,11 +28,7 @@ around _build_MakeFile_PL_template => sub
 
     # prereq specifications don't always provide exact versions - we just weed
     # those out for now, as this shouldn't occur that frequently.
-    my %check_modules = map {
-        version::is_strict($configure_requires->{$_})
-            ? ( $_ => $configure_requires->{$_} )
-            : ()
-    } keys %$configure_requires;
+    delete @{$configure_requires}{ grep { not version::is_strict($configure_requires->{$_}) } keys %$configure_requires };
 
     my $code = <<'CODE'
 BEGIN {
