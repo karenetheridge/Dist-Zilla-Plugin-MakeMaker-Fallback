@@ -40,7 +40,7 @@ my %configure_requires = (
 CODE
         . join('', map {
                 "    '$_' => '$configure_requires->{$_}',\n"
-            } keys %$configure_requires)
+            } sort keys %$configure_requires)
     . <<'CODE'
 );
 

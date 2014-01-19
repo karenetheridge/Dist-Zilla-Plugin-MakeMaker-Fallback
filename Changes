@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - now sorting the dumped %configure_requires prereqs, for
+            minimizing diffs between releases
 
 0.005     2013-12-14 17:25:20Z
           - warnings can now be bypassed entirely with the
