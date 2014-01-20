@@ -11,6 +11,21 @@ with 'Dist::Zilla::Role::AfterBuild';
 use version;
 use namespace::autoclean;
 
+# no point in bothering with this until we have config variables
+#around dump_config => sub
+#{
+#    my $orig = shift;
+#    my $self = shift;
+#
+#    my $config = $self->$orig;
+#
+#    $config->{'' . __PACKAGE__} = {
+#        # ...
+#    };
+#
+#    return $config;
+#};
+
 sub after_build
 {
     my $self = shift;
