@@ -13,15 +13,15 @@ Revision history for {{$dist->name}}
 0.004     2013-11-20 21:49:00Z
           - tighten up the interactive terminal detection logic
 
-0.003     2013-10-15 01:26:28Z (Karen Etheridge)
+0.003     2013-10-15 01:26:28Z
           - only display the warning if configure_require prereqs are
             genuinely missing (the user may have explicitly chosen to run
             Makefile.PL) (RT#89434)
 
-0.002     2013-09-25 02:15:24Z (Karen Etheridge)
+0.002     2013-09-25 02:15:24Z
           - bump up dependency on [MakeMaker::Awesome] to avoid missing lib
             errors
 
-0.001     2013-09-22 21:33:34Z (Karen Etheridge)
+0.001     2013-09-22 21:33:34Z
           - Initial release.
 
