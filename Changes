@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - switch to renamed form of now-deprecated plugin
+            [MungeData::WithDataSection]
 
 0.006     2014-01-25 03:52:42Z
           - now sorting the dumped %configure_requires prereqs, for
