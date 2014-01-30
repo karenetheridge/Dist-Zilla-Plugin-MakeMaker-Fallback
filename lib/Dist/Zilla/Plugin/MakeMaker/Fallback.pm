@@ -8,6 +8,7 @@ use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.13' };
 with 'Dist::Zilla::Role::AfterBuild';
 
+use List::Util 'first';
 use version;
 use namespace::autoclean;
 
@@ -30,8 +31,12 @@ sub after_build
 {
     my $self = shift;
 
-    my @installers = grep { $_->name eq 'Makefile.PL' or $_->name eq 'Build.PL' } @{ $self->zilla->files };
-    @installers > 1 or $self->log_fatal('No Build.PL found to fall back from!');
+    # if Makefile.PL is missing, someone removed it (probably a bad thing)
+    my $makefile_pl = first { $_->name eq 'Makefile.PL' } @{ $self->zilla->files };
+    $self->log_fatal('No Makefile.PL found -- did you remove it!?') if not $makefile_pl;
+
+    my $build_pl = first { $_->name eq 'Build.PL' } @{ $self->zilla->files };
+    $self->log_fatal('No Build.PL found to fall back from!') if not $build_pl;
 }
 
 around _build_MakeFile_PL_template => sub
