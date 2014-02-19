@@ -51,7 +51,7 @@ use File::Spec;
     );
 
     $tzil->build;
-    my $build_dir = $tzil->tempdir->subdir('build');
+    my $build_dir = path($tzil->tempdir)->child('build');
 
     my @expected_files = qw(
         Build.PL
@@ -72,8 +72,8 @@ use File::Spec;
         'both Makefile.PL and Build.PL are generated',
     );
 
-    my $Makefile_PL = path($tzil->tempdir->subdir('build'), 'Makefile.PL');
-    my $Makefile_PL_content = $Makefile_PL->slurp;
+    my $Makefile_PL = path($tzil->tempdir)->child('build', 'Makefile.PL');
+    my $Makefile_PL_content = $Makefile_PL->slurp_utf8;
 
     my $preamble = join('', <*Dist::Zilla::Plugin::MakeMaker::Fallback::DATA>);
 
