@@ -20,7 +20,7 @@ use namespace::autoclean;
 #
 #    my $config = $self->$orig;
 #
-#    $config->{'' . __PACKAGE__} = {
+#    $config->{+__PACKAGE__} = {
 #        # ...
 #    };
 #
