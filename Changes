@@ -3,6 +3,10 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
           - switch to renamed form of now-deprecated plugin
             [MungeData::WithDataSection]
+          - "dzil test" will run tests without extra testing variables, for
+            "dzil release" or "dzil test --release" -- this will weed out test
+            issues that only manifest when AUTHOR_TESTING or RELEASE_TESTING
+            are *not* set (e.g. bad test count, conditional module loading).
 
 0.006     2014-01-25 03:52:42Z
           - now sorting the dumped %configure_requires prereqs, for

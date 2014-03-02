@@ -82,15 +82,21 @@ CODE
     return substr($string, 0, pos($string)) . $code . substr($string, pos($string));
 };
 
-sub build
-{
-    my $self = shift;
-    $self->log_debug('doing nothing during build...');
-}
-
 sub test
 {
     my $self = shift;
+
+    if ($ENV{RELEASE_TESTING})
+    {
+        # we are either performing a 'dzil test' with RELEASE_TESTING set, or
+        # a 'dzil release' -- the Build.PL plugin will run tests with extra
+        # variables set, so as an extra check, we will perform them without.
+
+        local $ENV{RELEASE_TESTING};
+        local $ENV{AUTHOR_TESTING};
+        return $self->next::method(@_);
+    }
+
     $self->log_debug('doing nothing during test...');
 }
 
