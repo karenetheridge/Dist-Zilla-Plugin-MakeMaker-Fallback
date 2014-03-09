@@ -45,8 +45,8 @@ foreach my $extra_testing (undef, 1)
     note '------------ performing a test, with extra testing variables '
         . ($extra_testing ? '' : 'un') . 'set';
 
-    local $ENV{RELEASE_TESTING} = $extra_testing;
-    local $ENV{AUTHOR_TESTING} = $extra_testing;
+    local $ENV{RELEASE_TESTING}; $ENV{RELEASE_TESTING} = $extra_testing if defined $extra_testing;
+    local $ENV{AUTHOR_TESTING}; $ENV{AUTHOR_TESTING} = $extra_testing if defined $extra_testing;
 
     my $tzil = Builder->from_config(
         { dist_root => 't/does_not_exist' },
