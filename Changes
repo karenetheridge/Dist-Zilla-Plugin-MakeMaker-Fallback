@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.007     2014-03-09 05:35:08Z
           - switch to renamed form of now-deprecated plugin
             [MungeData::WithDataSection]
           - "dzil test" will run tests without extra testing variables, for
