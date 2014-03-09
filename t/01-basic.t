@@ -22,7 +22,7 @@ use File::Spec;
         { dist_root => 't/does_not_exist' },
         {
             add_files => {
-                'source/dist.ini' => simple_ini(
+                path(qw(source dist.ini)) => simple_ini(
                     'BogusInstaller',
                     'MakeMaker::Fallback',
                 ),
@@ -42,7 +42,7 @@ use File::Spec;
         { dist_root => 't/does_not_exist' },
         {
             add_files => {
-                'source/dist.ini' => simple_ini(
+                path(qw(source dist.ini)) => simple_ini(
                     [ 'MakeMaker::Fallback' ],
                     [ 'ModuleBuildTiny' ],
                 ),
@@ -85,7 +85,7 @@ use File::Spec;
         { dist_root => 't/does_not_exist' },
         {
             add_files => {
-                'source/dist.ini' => simple_ini(
+                path(qw(source dist.ini)) => simple_ini(
                     [ 'GatherDir' ],
                     [ 'MakeMaker::Fallback' ],
                     [ 'ModuleBuildTiny' ],
