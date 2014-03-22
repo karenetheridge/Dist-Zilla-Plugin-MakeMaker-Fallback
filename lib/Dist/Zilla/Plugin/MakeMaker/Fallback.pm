@@ -6,7 +6,7 @@ package Dist::Zilla::Plugin::MakeMaker::Fallback;
 
 use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.13' };
-with 'Dist::Zilla::Role::AfterBuild';
+with 'Dist::Zilla::Role::AfterBuild' => { -excludes => 'dump_config' };
 
 use List::Util 'first';
 use version;
