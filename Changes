@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.008     2014-03-23 02:43:22Z
           - properly dump configs by resolving silent role composition sub
             clobbering issue
 
