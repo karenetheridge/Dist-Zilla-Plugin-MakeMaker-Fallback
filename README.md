@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 # VERSION
 
-version 0.008
+version 0.009
 
 # SYNOPSIS
 
