@@ -10,7 +10,7 @@ use Test::DZil;
 
 # earlier versions of the upstream MakeMaker plugins did not ever have
 # customized dump_configs, for us to test for
-use Test::Requires 'Dist::Zilla::Role::TestRunner' => '5.014';
+use Test::Requires { 'Dist::Zilla::Role::TestRunner' => '5.014' };
 
 my $tzil = Builder->from_config(
     { dist_root => 't/does_not_exist' },
