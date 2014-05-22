@@ -122,6 +122,8 @@ your dist, with an added preamble that is printed when it is run:
 
 =over 4
 
+=for stopwords cpanminus mb
+
 =for comment This section was inserted from the DATA section at build time
 
 {{ $DATA }}
@@ -167,8 +169,6 @@ for that...)
 * L<Dist::Zilla::Plugin::ModuleBuildTiny>
 
 =end :list
-
-=for stopwords cpanminus mb
 
 =cut
 __DATA__
