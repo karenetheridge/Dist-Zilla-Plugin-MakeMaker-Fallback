@@ -9,6 +9,7 @@ use Test::Deep;
 use Path::Tiny;
 use File::Find;
 use File::Spec;
+use Capture::Tiny 'capture';
 
 {
     package Dist::Zilla::Plugin::BogusInstaller;
@@ -96,15 +97,24 @@ use File::Spec;
         },
     );
 
-    $tzil->test;
+    $tzil->chrome->logger->set_debug(1);
+    my ($stdout, $stderr, @result) = capture {
+        local $ENV{RELEASE_TESTING};
+        local $ENV{AUTHOR_TESTING};
+        $tzil->test;
+    };
+
+    $stdout =~ s/^/    /gm;
+    print $stdout;
 
     cmp_deeply(
         $tzil->log_messages,
         superbagof(
+            re(qr/\Q[MakeMaker::Fallback] doing nothing during test...\E/),
             re(qr/all's well/),
         ),
-       'the test method does not die',
-    );
+        'the test method does not die; correct diagnostics printed',
+    ) or diag 'saw log messages: ', explain $tzil->log_messages;
 }
 
 done_testing;

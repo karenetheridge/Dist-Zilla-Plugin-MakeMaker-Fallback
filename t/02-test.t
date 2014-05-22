@@ -5,6 +5,8 @@ use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::DZil;
 use Path::Tiny;
+use Test::Deep;
+use Capture::Tiny 'capture';
 
 # build a dist with MBT and Fallback
 # include a simple test in the dist
@@ -71,9 +73,16 @@ TEST
         },
     );
 
+    $tzil->chrome->logger->set_debug(1);
+
     # the tests are run inside a 'prove', so there is no need to wrap them in
-    # a subtest
-    $tzil->test;
+    # a subtest - but we do need to indent the output
+    my ($stdout, $stderr, @result) = capture {
+        $tzil->test;
+    };
+
+    $stdout =~ s/^/    /gm;
+    print $stdout;
 
     # I'm not really sure why the build seems to be getting run inside the
     # 'source' dir, rather than 'build' -- seems rather odd...
@@ -92,6 +101,15 @@ TEST
 
         my $env_makefile = $source_dir->child('environment-Makefile.PL');
         ok(!-e $env_makefile, 'Makefile.PL did not run');
+
+        cmp_deeply(
+            $tzil->log_messages,
+            superbagof(
+                re(qr/\Q[MakeMaker::Fallback] doing nothing during test...\E/),
+                re(qr/all's well/),
+            ),
+            'the test method does not die; correct diagnostics printed',
+        ) or diag 'saw log messages: ', explain $tzil->log_messages;
     }
     else
     {
@@ -112,6 +130,15 @@ TEST
             "\$ENV{RELEASE_TESTING} = 0\n\$ENV{AUTHOR_TESTING} = 0\n",
             'when test variables are set, Makefile.PL ran with variables unset',
         );
+
+        cmp_deeply(
+            $tzil->log_messages,
+            superbagof(
+                re(qr/\[MakeMaker::Fallback\] performing test with RELEASE_TESTING, AUTHOR_TESTING unset/),
+                re(qr/all's well/),
+            ),
+            'the test method does not die; correct diagnostics printed',
+        ) or diag 'saw log messages: ', explain $tzil->log_messages;
     }
 }
 

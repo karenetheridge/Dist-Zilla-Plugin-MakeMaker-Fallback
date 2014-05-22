@@ -94,6 +94,7 @@ sub test
 
         local $ENV{RELEASE_TESTING};
         local $ENV{AUTHOR_TESTING};
+        $self->log_debug('performing test with RELEASE_TESTING, AUTHOR_TESTING unset');
         return $self->next::method(@_);
     }
 
