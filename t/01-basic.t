@@ -7,8 +7,6 @@ use Test::Fatal;
 use Test::DZil;
 use Test::Deep;
 use Path::Tiny;
-use File::Find;
-use File::Spec;
 use Capture::Tiny 'capture';
 
 {
@@ -60,12 +58,11 @@ use Capture::Tiny 'capture';
     );
 
     my @found_files;
-    find({
-            wanted => sub { push @found_files, File::Spec->abs2rel($_, $build_dir) if -f  },
-            no_chdir => 1,
-         },
-        $build_dir,
-    );
+    my $iter = $build_dir->iterator({ recurse => 1 });
+    while (my $path = $iter->())
+    {
+        push @found_files, $path->relative($build_dir)->stringify if -f $path;
+    }
 
     cmp_deeply(
         \@found_files,
