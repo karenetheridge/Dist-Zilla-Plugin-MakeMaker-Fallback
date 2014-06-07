@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
           - print a useful log message during dzil test --verbose
+          - "use ExtUtils::MakeMaker <version>" now stripped out of
+            Makefile.PL, to allow non-configure-requires-compliant
+            installers to still proceed
 
 0.009     2014-03-24 03:52:26Z
           - fix test which should be skipped when an optional prereq is not

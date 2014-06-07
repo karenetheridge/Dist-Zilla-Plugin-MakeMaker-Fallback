@@ -76,6 +76,26 @@ use Capture::Tiny 'capture';
     my $preamble = join('', <*Dist::Zilla::Plugin::MakeMaker::Fallback::DATA>);
 
     like($Makefile_PL_content, qr/\Q$preamble\E/ms, 'preamble is found in makefile');
+
+    unlike(
+        $Makefile_PL_content,
+        qr/use\s+ExtUtils::MakeMaker\s/m,
+        'ExtUtils::MakeMaker not used with VERSION',
+    );
+
+    like(
+        $Makefile_PL_content,
+        qr/^use ExtUtils::MakeMaker;$/m,
+        'ExtUtils::MakeMaker is still used',
+    );
+
+    subtest 'ExtUtils::MakeMaker->VERSION not asserted (outside of an eval) either' => sub {
+        while ($Makefile_PL_content =~ /^(.*)ExtUtils::MakeMaker\s*->\s*VERSION\s*\(\s*([\d._]+)\s*\)/mg)
+        {
+            like($1, qr/eval/, 'VERSION assertion (on ' . $2 . ') done inside an eval');
+        }
+        pass;
+    };
 }
 
 {

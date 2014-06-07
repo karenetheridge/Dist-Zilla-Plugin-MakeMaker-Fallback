@@ -77,6 +77,10 @@ CODE
 
     my $string = $self->$orig(@_);
 
+    # strip out the hard VERSION requirement - be gentle to users that failed
+    # to satisfy configure_requires
+    $string =~ s/^use ExtUtils::MakeMaker\K \N+;$/;/m;
+
     # splice in our stuff after the preamble bits
     $string =~ m/use warnings;\n\n/g;
     return substr($string, 0, pos($string)) . $code . substr($string, pos($string));
