@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.010     2014-06-07 06:29:43Z
           - print a useful log message during dzil test --verbose
           - "use ExtUtils::MakeMaker <version>" now stripped out of
             Makefile.PL, to allow non-configure-requires-compliant
