@@ -171,7 +171,9 @@ for that...)
 
 =begin :list
 
+* L<Dist::Zilla::Plugin::MakeMaker>
 * L<Dist::Zilla::Plugin::ModuleBuildTiny>
+* L<Dist::Zilla::Plugin::ModuleBuildTiny::Fallback>
 
 =end :list
 
