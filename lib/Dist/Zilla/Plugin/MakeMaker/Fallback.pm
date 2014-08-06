@@ -45,21 +45,20 @@ around _build_MakeFile_PL_template => sub
     my $orig = shift;
     my $self = shift;
 
-    my $configure_requires = $self->zilla->prereqs->as_string_hash->{configure}{requires};
+    my $code = <<'CODE'
+BEGIN {
+my %configure_requires = (
+{{ # look, it's a template inside a template!
+q[{{
+    my $configure_requires = $dist->prereqs->as_string_hash->{configure}{requires};
 
     # prereq specifications don't always provide exact versions - we just weed
     # those out for now, as this shouldn't occur that frequently.
     delete @{$configure_requires}{ grep { not version::is_strict($configure_requires->{$_}) } keys %$configure_requires };
-
-    my $code = <<'CODE'
-BEGIN {
-my %configure_requires = (
-CODE
-        . join('', map {
-                "    '$_' => '$configure_requires->{$_}',\n"
-            } sort keys %$configure_requires)
-    . <<'CODE'
-);
+    join('', map {
+            "    '$_' => '$configure_requires->{$_}',\n"
+        } sort keys %$configure_requires)
+}}] }});
 
 my @missing = grep {
     ! eval "require $_; $_->VERSION($configure_requires{$_}); 1"

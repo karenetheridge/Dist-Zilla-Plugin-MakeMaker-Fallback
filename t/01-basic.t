@@ -89,6 +89,29 @@ use Capture::Tiny 'capture';
         'ExtUtils::MakeMaker is still used',
     );
 
+    SKIP:
+    {
+        ok($Makefile_PL_content =~ /^my %configure_requires = \($/mg, 'found start of %configure_requires declaration')
+            or skip 'failed to test %configure_requires section', 2;
+        my $start = pos($Makefile_PL_content);
+
+        ok($Makefile_PL_content =~ /\);$/mg, 'found end of %configure_requires declaration')
+            or skip 'failed to test %configure_requires section', 1;
+        my $end = pos($Makefile_PL_content);
+
+        my $configure_requires_content = substr($Makefile_PL_content, $start, $end - $start - 2);
+
+        my %configure_requires = %{ $tzil->distmeta->{prereqs}{configure}{requires} };
+        foreach my $prereq (keys %configure_requires)
+        {
+            like(
+                $configure_requires_content,
+                qr/$prereq\W+$configure_requires{$prereq}/m,
+                "\%configure_requires contains $prereq => $configure_requires{$prereq}",
+            );
+        }
+    }
+
     subtest 'ExtUtils::MakeMaker->VERSION not asserted (outside of an eval) either' => sub {
         while ($Makefile_PL_content =~ /^(.*)ExtUtils::MakeMaker\s*->\s*VERSION\s*\(\s*([\d._]+)\s*\)/mg)
         {
