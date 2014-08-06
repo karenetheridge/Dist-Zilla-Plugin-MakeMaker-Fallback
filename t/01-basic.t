@@ -98,40 +98,4 @@ use Capture::Tiny 'capture';
     };
 }
 
-{
-    my $tzil = Builder->from_config(
-        { dist_root => 't/does_not_exist' },
-        {
-            add_files => {
-                path(qw(source dist.ini)) => simple_ini(
-                    [ 'GatherDir' ],
-                    [ 'MakeMaker::Fallback' ],
-                    [ 'ModuleBuildTiny' ],
-                    [ 'MetaJSON' ],         # MBT requires a META.* file
-                ),
-                path(qw(source/t/test.t)) => "use Test::More tests => 1; pass('passing test');\n",
-            },
-        },
-    );
-
-    $tzil->chrome->logger->set_debug(1);
-    my ($stdout, $stderr, @result) = capture {
-        local $ENV{RELEASE_TESTING};
-        local $ENV{AUTHOR_TESTING};
-        $tzil->test;
-    };
-
-    $stdout =~ s/^/    /gm;
-    print $stdout;
-
-    cmp_deeply(
-        $tzil->log_messages,
-        superbagof(
-            re(qr/\Q[MakeMaker::Fallback] doing nothing during test...\E/),
-            re(qr/all's well/),
-        ),
-        'the test method does not die; correct diagnostics printed',
-    ) or diag 'saw log messages: ', explain $tzil->log_messages;
-}
-
 done_testing;
