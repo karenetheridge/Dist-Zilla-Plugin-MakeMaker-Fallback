@@ -45,11 +45,15 @@ around _build_MakeFile_PL_template => sub
     my $orig = shift;
     my $self = shift;
 
-    my $code = <<'CODE'
+    # this module file gets passed through a template itself at build time, so
+    # we need to escape these template markers so they survive
+
+    my $code = <<"CODE"
 BEGIN {
 my %configure_requires = (
-{{ # look, it's a template inside a template!
-q[{{
+\x7b\x7b  # look, it's a template inside a template!
+CODE
+. <<'CODE'
     my $configure_requires = $dist->prereqs->as_string_hash->{configure}{requires};
 
     # prereq specifications don't always provide exact versions - we just weed
@@ -58,7 +62,8 @@ q[{{
     join('', map {
             "    '$_' => '$configure_requires->{$_}',\n"
         } sort keys %$configure_requires)
-}}] }});
+CODE
+    . "\x7d\x7d);\n" . <<'CODE'
 
 my @missing = grep {
     ! eval "require $_; $_->VERSION($configure_requires{$_}); 1"
