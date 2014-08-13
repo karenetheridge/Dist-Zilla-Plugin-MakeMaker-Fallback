@@ -36,13 +36,18 @@ use Capture::Tiny 'capture';
     );
 }
 
+foreach my $eumm_version ('6.00', undef)
 {
     my $tzil = Builder->from_config(
         { dist_root => 't/does_not_exist' },
         {
             add_files => {
                 path(qw(source dist.ini)) => simple_ini(
-                    [ 'MakeMaker::Fallback' ],
+                    [ 'MakeMaker::Fallback' =>
+                        $eumm_version
+                            ? { eumm_version => $eumm_version }
+                            : ()
+                    ],
                     [ 'ModuleBuildTiny' ],
                 ),
             },
@@ -80,13 +85,17 @@ use Capture::Tiny 'capture';
     unlike(
         $Makefile_PL_content,
         qr/use\s+ExtUtils::MakeMaker\s/m,
-        'ExtUtils::MakeMaker not used with VERSION',
+        'ExtUtils::MakeMaker not used with VERSION (when '
+            . ($eumm_version ? 'a' : 'no')
+            . ' eumm_version was specified)',
     );
 
     like(
         $Makefile_PL_content,
         qr/^use ExtUtils::MakeMaker;$/m,
-        'ExtUtils::MakeMaker is still used',
+        'ExtUtils::MakeMaker is still used (when '
+            . ($eumm_version ? 'a' : 'no')
+            . ' eumm_version was specified)',
     );
 
     SKIP:
@@ -102,7 +111,7 @@ use Capture::Tiny 'capture';
         my $configure_requires_content = substr($Makefile_PL_content, $start, $end - $start - 2);
 
         my %configure_requires = %{ $tzil->distmeta->{prereqs}{configure}{requires} };
-        foreach my $prereq (keys %configure_requires)
+        foreach my $prereq (sort keys %configure_requires)
         {
             like(
                 $configure_requires_content,
@@ -110,6 +119,7 @@ use Capture::Tiny 'capture';
                 "\%configure_requires contains $prereq => $configure_requires{$prereq}",
             );
         }
+        is($configure_requires{'ExtUtils::MakeMaker'}, $eumm_version // 0, 'correct EUMM version in prereqs');
     }
 
     subtest 'ExtUtils::MakeMaker->VERSION not asserted (outside of an eval) either' => sub {
