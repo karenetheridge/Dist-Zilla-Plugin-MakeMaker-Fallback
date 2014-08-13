@@ -117,7 +117,7 @@ use Capture::Tiny 'capture';
         {
             like($1, qr/eval/, 'VERSION assertion (on ' . $2 . ') done inside an eval');
         }
-        pass;
+        pass 'no-op';
     };
 }
 
