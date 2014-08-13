@@ -84,7 +84,7 @@ CODE
 
     # strip out the hard VERSION requirement - be gentle to users that failed
     # to satisfy configure_requires
-    $string =~ s/^use ExtUtils::MakeMaker\K\N+;$/;/m;
+    $string =~ s/^use ExtUtils::MakeMaker\K[^\n]+;$/;/m;
 
     # splice in our stuff after the preamble bits
     $string =~ m/use warnings;\n\n/g;

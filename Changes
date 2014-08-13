@@ -3,6 +3,8 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
           - fix munging of "use ExtUtils::MakeMaker <version>" since
             [MakeMaker::Awesome] version 0.22 changed the template
+          - lower minimum version of perl required by removing a use of \N in
+            a regular expression
 
 0.011     2014-08-07 02:27:53Z
           - properly include %configure_requires content in Makefile.PL
