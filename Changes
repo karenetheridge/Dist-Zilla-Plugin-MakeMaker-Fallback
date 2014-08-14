@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.012     2014-08-14 02:03:30Z
           - fix munging of "use ExtUtils::MakeMaker <version>" since
             [MakeMaker::Awesome] version 0.22 changed the template
           - lower minimum version of perl required by removing a use of \N in
