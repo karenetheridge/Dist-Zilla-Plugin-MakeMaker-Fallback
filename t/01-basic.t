@@ -36,18 +36,17 @@ use Capture::Tiny 'capture';
     );
 }
 
-foreach my $eumm_version ('6.00', undef)
+foreach my $eumm_version ('6.00', '0')
 {
     my $tzil = Builder->from_config(
         { dist_root => 't/does_not_exist' },
         {
             add_files => {
                 path(qw(source dist.ini)) => simple_ini(
-                    [ 'MakeMaker::Fallback' =>
-                        $eumm_version
-                            ? { eumm_version => $eumm_version }
-                            : ()
-                    ],
+                    # in [MakeMaker] 5.019 and earlier, this defaults to 6.30,
+                    # and must be set to a number (not empty string) for
+                    # Makefile.PL to come out right.
+                    [ 'MakeMaker::Fallback' => { eumm_version => $eumm_version } ],
                     [ 'ModuleBuildTiny' ],
                 ),
             },

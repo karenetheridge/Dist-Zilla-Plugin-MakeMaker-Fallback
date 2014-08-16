@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - fix test from previous release's fix that was incompatible with
+            earlier versions of [MakeMaker]'s practice of always setting
+            eumm_version
 
 0.012     2014-08-14 02:03:30Z
           - fix munging of "use ExtUtils::MakeMaker <version>" since
