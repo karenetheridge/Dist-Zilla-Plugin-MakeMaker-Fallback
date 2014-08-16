@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.013     2014-08-16 00:02:55Z
           - fix test from previous release's fix that was incompatible with
             earlier versions of [MakeMaker]'s practice of always setting
             eumm_version
