@@ -174,13 +174,10 @@ for that...)
 
 =head1 SEE ALSO
 
-=begin :list
-
+=for :list
 * L<Dist::Zilla::Plugin::MakeMaker>
 * L<Dist::Zilla::Plugin::ModuleBuildTiny>
 * L<Dist::Zilla::Plugin::ModuleBuildTiny::Fallback>
-
-=end :list
 
 =cut
 __DATA__
