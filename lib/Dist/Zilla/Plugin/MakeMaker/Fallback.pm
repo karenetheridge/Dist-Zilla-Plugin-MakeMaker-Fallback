@@ -106,8 +106,10 @@ sub test
         $self->log_debug('performing test with RELEASE_TESTING, AUTHOR_TESTING unset');
         return $self->next::method(@_);
     }
-
-    $self->log_debug('doing nothing during test...');
+    else
+    {
+        $self->log_debug('doing nothing during test...');
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -140,16 +142,17 @@ your dist, with an added preamble that is printed when it is run:
 
 =back
 
-=for stopwords functionalities ModuleBuildTiny
-
-Additionally, the C<build> and C<test> functionalities of the plugin
-(C<< perl Makefile.PL && make >> and C<< make test >> respectively) are
-disabled, making it convenient to develop under multiple installer plugins,
-without C<dzil test> running tests twice.
+=for stopwords ModuleBuildTiny
 
 It is a fatal error to use this plugin when there is not also another
 plugin enabled that generates a F<Build.PL> (such as
 L<[ModuleBuildTiny]|Dist::Zilla::Plugin::ModuleBuildTiny>).
+
+On top of the regular testing that is provided via the F<Build.PL>-producing
+plugin, C<dzil test --release> or C<dzil release> will run tests with extra
+testing variables B<unset> (C<AUTHOR_TESTING>, C<RELEASE_TESTING>). This is to
+weed out test issues that only manifest under these conditions (for example:
+bad test count, conditional module loading).
 
 =head1 SUPPORT
 
