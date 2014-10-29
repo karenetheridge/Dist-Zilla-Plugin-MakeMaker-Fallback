@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.014     2014-10-29 02:44:49Z
           - document the double testing behaviour that changed with version
             0.007 (thanks for noticing, Apocalypse!)
           - remove perl from the list of configure requires prereqs to check
