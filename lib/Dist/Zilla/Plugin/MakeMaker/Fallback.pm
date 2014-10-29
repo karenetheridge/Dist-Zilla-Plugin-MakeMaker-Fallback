@@ -55,6 +55,7 @@ my %configure_requires = (
 CODE
 . <<'CODE'
     my $configure_requires = $dist->prereqs->as_string_hash->{configure}{requires};
+    delete $configure_requires->{perl};
 
     # prereq specifications don't always provide exact versions - we just weed
     # those out for now, as this shouldn't occur that frequently.

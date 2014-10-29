@@ -3,6 +3,8 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
           - document the double testing behaviour that changed with version
             0.007 (thanks for noticing, Apocalypse!)
+          - remove perl from the list of configure requires prereqs to check
+            for in Makefile.PL
 
 0.013     2014-08-16 00:02:55Z
           - fix test from previous release's fix that was incompatible with

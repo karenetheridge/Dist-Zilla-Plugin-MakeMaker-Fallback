@@ -48,6 +48,7 @@ foreach my $eumm_version ('6.00', '0')
                     # Makefile.PL to come out right.
                     [ 'MakeMaker::Fallback' => { eumm_version => $eumm_version } ],
                     [ 'ModuleBuildTiny' ],
+                    [ Prereqs => ConfigureRequires => { perl => '5.006' } ],
                 ),
             },
         },
@@ -112,11 +113,22 @@ foreach my $eumm_version ('6.00', '0')
         my %configure_requires = %{ $tzil->distmeta->{prereqs}{configure}{requires} };
         foreach my $prereq (sort keys %configure_requires)
         {
-            like(
-                $configure_requires_content,
-                qr/$prereq\W+$configure_requires{$prereq}/m,
-                "\%configure_requires contains $prereq => $configure_requires{$prereq}",
-            );
+            if ($prereq eq 'perl')
+            {
+                unlike(
+                    $configure_requires_content,
+                    qr/perl/m,
+                    '%configure_requires does not contain perl',
+                );
+            }
+            else
+            {
+                like(
+                    $configure_requires_content,
+                    qr/$prereq\W+$configure_requires{$prereq}\W/m,
+                    "\%configure_requires contains $prereq => $configure_requires{$prereq}",
+                );
+            }
         }
         is($configure_requires{'ExtUtils::MakeMaker'}, $eumm_version // 0, 'correct EUMM version in prereqs');
     }
