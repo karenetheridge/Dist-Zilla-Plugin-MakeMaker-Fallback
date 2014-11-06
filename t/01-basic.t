@@ -29,11 +29,15 @@ use Capture::Tiny 'capture';
         },
     );
 
+    $tzil->chrome->logger->set_debug(1);
     like(
         exception { $tzil->build },
         qr/\Q[MakeMaker::Fallback] No Build.PL found to fall back from!\E/,
         'build aborted when no additional installer is provided',
     );
+
+    diag 'got log messages: ', explain $tzil->log_messages
+        if not Test::Builder->new->is_passing;
 }
 
 foreach my $eumm_version ('6.00', '0')
@@ -54,7 +58,13 @@ foreach my $eumm_version ('6.00', '0')
         },
     );
 
-    $tzil->build;
+    $tzil->chrome->logger->set_debug(1);
+    is(
+        exception { $tzil->build },
+        undef,
+        'build proceeds normally',
+    );
+
     my $build_dir = path($tzil->tempdir)->child('build');
 
     my @expected_files = qw(
@@ -140,6 +150,9 @@ foreach my $eumm_version ('6.00', '0')
         }
         pass 'no-op';
     };
+
+    diag 'got log messages: ', explain $tzil->log_messages
+        if not Test::Builder->new->is_passing;
 }
 
 done_testing;

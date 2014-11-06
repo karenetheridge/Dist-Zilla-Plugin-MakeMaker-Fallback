@@ -109,7 +109,7 @@ TEST
                 re(qr/all's well/),
             ),
             'the test method does not die; correct diagnostics printed',
-        ) or diag 'saw log messages: ', explain $tzil->log_messages;
+        );
     }
     else
     {
@@ -138,8 +138,11 @@ TEST
                 re(qr/all's well/),
             ),
             'the test method does not die; correct diagnostics printed',
-        ) or diag 'saw log messages: ', explain $tzil->log_messages;
+        )
     }
+
+    diag 'got log messages: ', explain $tzil->log_messages
+        if not Test::Builder->new->is_passing;
 }
 
 done_testing;

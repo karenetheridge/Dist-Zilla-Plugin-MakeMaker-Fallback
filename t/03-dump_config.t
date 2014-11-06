@@ -4,6 +4,7 @@ use warnings FATAL => 'all';
 use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Path::Tiny;
+use Test::Fatal;
 use Test::Deep;
 use Test::DZil;
 
@@ -26,7 +27,12 @@ my $tzil = Builder->from_config(
     },
 );
 
-$tzil->build;
+$tzil->chrome->logger->set_debug(1);
+is(
+    exception { $tzil->build },
+    undef,
+    'build proceeds normally',
+);
 
 cmp_deeply(
     $tzil->distmeta,
@@ -47,5 +53,8 @@ cmp_deeply(
     }),
     'config is properly included in metadata',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;
+
+diag 'got log messages: ', explain $tzil->log_messages
+    if not Test::Builder->new->is_passing;
 
 done_testing;
