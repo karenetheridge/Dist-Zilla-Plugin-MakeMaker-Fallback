@@ -28,6 +28,12 @@ use namespace::autoclean;
 #    return $config;
 #};
 
+sub register_prereqs
+{
+    # block ExtUtils::MakeMaker from being added, since technically it should
+    # only be getting run if configure_requires is *not* being respected
+}
+
 sub after_build
 {
     my $self = shift;

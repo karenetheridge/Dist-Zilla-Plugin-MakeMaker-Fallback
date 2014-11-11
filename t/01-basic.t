@@ -65,6 +65,21 @@ foreach my $eumm_version ('6.00', '0')
         'build proceeds normally',
     );
 
+    cmp_deeply(
+        $tzil->distmeta,
+        superhashof({
+            prereqs => superhashof({
+                configure => {
+                    requires => {
+                        'Module::Build::Tiny' => ignore,
+                        'perl' => '5.006',
+                    },
+                },
+            }),
+        }),
+        'ExtUtils::MakeMaker is not included in configure requires',
+    ) or diag 'got metadata: ', explain $tzil->distmeta;
+
     my $build_dir = path($tzil->tempdir)->child('build');
 
     my @expected_files = qw(
@@ -151,7 +166,6 @@ foreach my $eumm_version ('6.00', '0')
                 );
             }
         }
-        is($configure_requires{'ExtUtils::MakeMaker'}, $eumm_version // 0, 'correct EUMM version in prereqs');
     }
 
     subtest 'ExtUtils::MakeMaker->VERSION not asserted (outside of an eval) either' => sub {
