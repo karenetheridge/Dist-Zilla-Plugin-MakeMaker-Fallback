@@ -95,7 +95,7 @@ foreach my $eumm_version ('6.00', '0')
 
     unlike(
         $Makefile_PL_content,
-        qr/use\s+ExtUtils::MakeMaker\s/m,
+        qr/^[^#]*use\s+ExtUtils::MakeMaker\s/m,
         'ExtUtils::MakeMaker not used with VERSION (when '
             . ($eumm_version ? 'a' : 'no')
             . ' eumm_version was specified)',
