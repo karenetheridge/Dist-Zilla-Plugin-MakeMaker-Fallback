@@ -88,6 +88,8 @@ foreach my $eumm_version ('6.00', '0')
     my $Makefile_PL = path($tzil->tempdir)->child('build', 'Makefile.PL');
     my $Makefile_PL_content = $Makefile_PL->slurp_utf8;
 
+    unlike($Makefile_PL_content, qr/[^\S\n]\n/m, 'no trailing whitespace in generated Makefile.PL');
+
     my $preamble = join('', <*Dist::Zilla::Plugin::MakeMaker::Fallback::DATA>);
 
     like($Makefile_PL_content, qr/\Q$preamble\E/ms, 'preamble is found in makefile');
