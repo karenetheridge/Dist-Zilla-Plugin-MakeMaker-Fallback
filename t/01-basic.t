@@ -93,6 +93,16 @@ foreach my $eumm_version ('6.00', '0')
     my $preamble = join('', <*Dist::Zilla::Plugin::MakeMaker::Fallback::DATA>);
     like($Makefile_PL_content, qr/\Q$preamble\E/ms, 'preamble is found in Makefile.PL');
 
+    like(
+        $Makefile_PL_content,
+        qr/^# This Makefile\.PL for .*
+^# Don't edit it but the dist\.ini .*
+
+^use strict;
+^use warnings;/ms,
+        'header is present',
+    );
+
     unlike(
         $Makefile_PL_content,
         qr/^[^#]*use\s+ExtUtils::MakeMaker\s/m,
