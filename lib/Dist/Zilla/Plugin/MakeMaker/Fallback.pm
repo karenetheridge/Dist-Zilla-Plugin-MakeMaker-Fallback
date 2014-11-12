@@ -6,7 +6,7 @@ package Dist::Zilla::Plugin::MakeMaker::Fallback;
 # vim: set ts=8 sw=4 tw=78 et :
 
 use Moose;
-extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.13' };
+extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.15' };
 with 'Dist::Zilla::Role::AfterBuild' => { -excludes => 'dump_config' };
 
 use List::Util 'first';

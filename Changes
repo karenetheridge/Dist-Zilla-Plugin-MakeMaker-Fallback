@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - bump up prereq version for [MakeMaker::Awesome] to ensure needed
+            template variables are made available
 
 0.015     2014-11-12 03:53:50Z
           - remove configure requires declarations added for Makefile.PL
