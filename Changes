@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.016     2014-11-12 05:36:19Z
           - bump up prereq version for [MakeMaker::Awesome] to ensure needed
             template variables are made available
 
