@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.015     2014-11-12 03:53:50Z
           - remove configure requires declarations added for Makefile.PL
             (technically they are only needed when configure requires is
             already not being respected)
