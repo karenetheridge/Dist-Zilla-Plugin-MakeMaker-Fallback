@@ -46,7 +46,7 @@ cmp_deeply(
                         'Dist::Zilla::Role::TestRunner' => ignore,  # changes over time
                     },
                     name => 'MakeMaker::Fallback',
-                    version => ignore,
+                    version => Dist::Zilla::Plugin::MakeMaker::Fallback->VERSION,
                 },
             ),
         })
