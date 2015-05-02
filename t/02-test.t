@@ -62,13 +62,6 @@ foreach my $extra_testing (undef, 1)
                     [ '=BuildMunger' ],
                 ),
                 path(qw(source lib Foo.pm)) => "package Foo;\n1;\n",
-                path(qw(source t test.t)) => <<'TEST',
-use strict;
-use warnings;
-use Test::More;
-pass;
-done_testing;
-TEST
             },
         },
     );
