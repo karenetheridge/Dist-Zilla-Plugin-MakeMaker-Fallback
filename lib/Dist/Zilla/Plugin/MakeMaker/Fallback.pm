@@ -87,7 +87,14 @@ else
     $ENV{PERL_MM_FALLBACK_SILENCE_WARNING} or warn <<'EOW';
 CODE
         . join('', <DATA>)
-        . "\nEOW\n\n    sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));\n}\n}\n\n";
+        . <<'CODE';
+EOW
+
+    sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));
+}
+} # end BEGIN
+
+CODE
 
     my $string = $self->$orig(@_);
 
