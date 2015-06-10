@@ -84,13 +84,15 @@ if (not @missing)
 }
 else
 {
-    $ENV{PERL_MM_FALLBACK_SILENCE_WARNING} or warn <<'EOW';
+    if (not $ENV{PERL_MM_FALLBACK_SILENCE_WARNING})
+    {
+        warn <<'EOW';
 CODE
         . join('', <DATA>)
         . <<'CODE';
 EOW
-
-    sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));
+        sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));
+    }
 }
 } # end BEGIN
 
