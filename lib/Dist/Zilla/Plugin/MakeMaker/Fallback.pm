@@ -5,7 +5,7 @@ package Dist::Zilla::Plugin::MakeMaker::Fallback;
 # KEYWORDS: plugin installer MakeMaker Makefile.PL toolchain legacy ancient backcompat
 # vim: set ts=8 sts=4 sw=4 tw=78 et :
 
-our $VERSION = '0.017';
+our $VERSION = '0.018';
 
 use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.15' };

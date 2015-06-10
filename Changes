@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
+{{$NEXT}}
+
 0.017     2015-06-10 01:47:27Z
           - if PERL_MM_FALLBACK_SILENCE_WARNING is set, do not sleep after
             "showing" the silenced warning
