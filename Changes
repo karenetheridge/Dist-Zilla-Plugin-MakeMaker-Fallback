@@ -3,6 +3,8 @@ Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 {{$NEXT}}
           - if PERL_MM_FALLBACK_SILENCE_WARNING is set, do not sleep after
             "showing" the silenced warning
+          - guard against older ExtUtils::MakeMaker from adding Build.PL
+            to the default list of files that are executed
 
 0.016     2014-11-12 05:36:19Z
           - bump up prereq version for [MakeMaker::Awesome] to ensure needed

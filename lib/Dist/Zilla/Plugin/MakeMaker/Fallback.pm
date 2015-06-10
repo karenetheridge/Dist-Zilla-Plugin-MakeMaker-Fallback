@@ -48,6 +48,18 @@ sub after_build
     $self->log_fatal('No Build.PL found to fall back from!') if not $build_pl;
 }
 
+around _build_WriteMakefile_args => sub
+{
+    my $orig = shift;
+    my $self = shift;
+    my $WriteMakefile_args = $self->$orig(@_);
+
+    return +{
+        PL_FILES => {}, # to avoid Build.PL from slipping in on EUMM < 6.25
+        %$WriteMakefile_args,
+    };
+};
+
 around _build_MakeFile_PL_template => sub
 {
     my $orig = shift;
