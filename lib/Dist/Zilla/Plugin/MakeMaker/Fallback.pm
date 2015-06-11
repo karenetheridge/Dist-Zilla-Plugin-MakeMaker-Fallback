@@ -78,7 +78,9 @@ CODE
     delete $configure_requires->{perl};
 
     # prereq specifications don't always provide exact versions - we just weed
-    # those out for now, as this shouldn't occur that frequently.
+    # those out for now, as this shouldn't occur that frequently.  There is no
+    # point in using CPAN::Meta, as that wasn't in core in the range of perl
+    # versions that is likely to not have satisfied these prereqs.
     delete @{$configure_requires}{ grep { not version::is_strict($configure_requires->{$_}) } keys %$configure_requires };
     join('', map {
             "    '$_' => '$configure_requires->{$_}',\n"
