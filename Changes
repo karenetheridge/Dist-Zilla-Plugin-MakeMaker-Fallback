@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.019     2015-07-21 06:40:57Z
           - fix silly error in Makefile.PL :(
 
 0.018     2015-07-21 03:06:06Z
