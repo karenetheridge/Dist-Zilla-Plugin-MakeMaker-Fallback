@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - add dynamic prereq on [MakeMaker::Awesome] to upgrade it in case
+            it is too old to work with newer [MakeMaker]
 
 0.017     2015-06-10 01:47:27Z
           - if PERL_MM_FALLBACK_SILENCE_WARNING is set, do not sleep after
