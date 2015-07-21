@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.018     2015-07-21 03:06:06Z
           - add dynamic prereq on [MakeMaker::Awesome] to upgrade it in case
             it is too old to work with newer [MakeMaker]
 
