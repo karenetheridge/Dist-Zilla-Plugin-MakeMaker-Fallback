@@ -164,15 +164,15 @@ C<configure_requires>:
 This plugin is a derivative of C<[MakeMaker]>, generating a F<Makefile.PL> in
 your dist, with an added preamble that is printed when it is run:
 
-=over 4
-
 =for stopwords cpanminus mb
 
 =for comment This section was inserted from the DATA section at build time
 
+=begin :verbatim
+
 {{ $DATA }}
 
-=back
+=end :verbatim
 
 =for stopwords ModuleBuildTiny
 
