@@ -92,11 +92,7 @@ my @missing = grep {
     ! eval "require $_; $_->VERSION($configure_requires{$_}); 1"
 } keys %configure_requires;
 
-if (not @missing)
-{
-    print "Congratulations, your toolchain understands 'configure_requires'!\n\n";
-}
-else
+if (@missing)
 {
     if (not $ENV{PERL_MM_FALLBACK_SILENCE_WARNING})
     {
