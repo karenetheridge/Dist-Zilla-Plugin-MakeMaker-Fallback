@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.020     2015-08-18 00:26:46Z
           - fixed formatting of quoted Build.PL by marking a verbatim section,
             rather than simply indenting by 4 columns
           - remove the noisy "Congratulations!" in Makefile.PL when the
