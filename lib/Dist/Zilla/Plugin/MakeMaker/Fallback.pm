@@ -182,14 +182,6 @@ testing variables B<unset> (C<AUTHOR_TESTING>, C<RELEASE_TESTING>). This is to
 weed out test issues that only manifest under these conditions (for example:
 bad test count, conditional module loading).
 
-=head1 SUPPORT
-
-=for stopwords irc
-
-Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-MakeMaker-Fallback>
-(or L<bug-Dist-Zilla-Plugin-MakeMaker-Fallback@rt.cpan.org|mailto:bug-Dist-Zilla-Plugin-MakeMaker-Fallback@rt.cpan.org>).
-I am also usually active on irc, as 'ether' at C<irc.perl.org>.
-
 =head1 ACKNOWLEDGEMENTS
 
 =for stopwords Peter Rabbitson ribasushi Matt Trout mst
