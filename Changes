@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - fix test that broke when [MakeMaker::Awesome] 0.35 added configs
 
 0.020     2015-08-18 00:26:46Z
           - fixed formatting of quoted Build.PL by marking a verbatim section,

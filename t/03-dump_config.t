@@ -42,9 +42,10 @@ cmp_deeply(
             plugins => supersetof(
                 {
                     class => 'Dist::Zilla::Plugin::MakeMaker::Fallback',
-                    config => {
+                    config => superhashof({
                         'Dist::Zilla::Role::TestRunner' => ignore,  # changes over time
-                    },
+                        # maybe Dist::Zilla::Plugin::MakeMaker::Awesome
+                    }),
                     name => 'MakeMaker::Fallback',
                     version => Dist::Zilla::Plugin::MakeMaker::Fallback->VERSION,
                 },
