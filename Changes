@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.021     2015-09-20 18:27:55Z
           - fix test that broke when [MakeMaker::Awesome] 0.35 added configs
 
 0.020     2015-08-18 00:26:46Z
