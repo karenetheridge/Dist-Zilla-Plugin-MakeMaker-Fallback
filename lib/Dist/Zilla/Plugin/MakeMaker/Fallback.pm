@@ -30,8 +30,8 @@ around dump_config => sub
 
 sub register_prereqs
 {
-    # block ExtUtils::MakeMaker from being added, since technically it should
-    # only be getting run if configure_requires is *not* being respected
+    # block ExtUtils::MakeMaker from being added, since we expect Build.PL to
+    # be preferred (so the requirements for *that* file are what matters)
 }
 
 sub after_build
