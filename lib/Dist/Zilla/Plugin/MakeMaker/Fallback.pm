@@ -113,7 +113,9 @@ CODE
     $string =~ s/^use ExtUtils::MakeMaker\K[^\n]+;$/;/m;
 
     # splice in our stuff after the preamble bits
-    $string =~ m/use warnings;\n\n/g;
+    $self->log_fatal('failed to find position in Makefile.PL to munge!')
+        if $string !~ m/use warnings;\n\n/g;
+
     return substr($string, 0, pos($string)) . $code . substr($string, pos($string));
 };
 
