@@ -58,11 +58,8 @@ around _build_WriteMakefile_args => sub
     };
 };
 
-around _build_MakeFile_PL_template => sub
+sub __preamble
 {
-    my $orig = shift;
-    my $self = shift;
-
     # this module file gets passed through a template itself at build time, so
     # we need to escape these template markers so they survive
 
@@ -105,6 +102,12 @@ EOW
 } # end BEGIN
 
 CODE
+}
+
+around _build_MakeFile_PL_template => sub
+{
+    my $orig = shift;
+    my $self = shift;
 
     my $string = $self->$orig(@_);
 
@@ -116,7 +119,7 @@ CODE
     $self->log_fatal('failed to find position in Makefile.PL to munge!')
         if $string !~ m/use warnings;\n\n/g;
 
-    return substr($string, 0, pos($string)) . $code . substr($string, pos($string));
+    return substr($string, 0, pos($string)) . $self->__preamble . substr($string, pos($string));
 };
 
 sub test
