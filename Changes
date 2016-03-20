@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
+{{$NEXT}}
+
 0.022     2016-03-20 00:47:39Z
           - regexp patterns tweaked that are used when Makefile.PL is munged,
             to be more resilient against future layout changes
