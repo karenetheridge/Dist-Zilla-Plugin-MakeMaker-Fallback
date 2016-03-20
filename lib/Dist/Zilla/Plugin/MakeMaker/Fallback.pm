@@ -8,7 +8,7 @@ package Dist::Zilla::Plugin::MakeMaker::Fallback;
 our $VERSION = '0.022';
 
 use Moose;
-extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.15' };
+extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.26' };
 with 'Dist::Zilla::Role::AfterBuild' => { -excludes => 'dump_config' };
 
 use List::Util 'first';
@@ -100,7 +100,6 @@ EOW
     }
 }
 } # end BEGIN
-
 CODE
 }
 
@@ -117,7 +116,7 @@ around _build_MakeFile_PL_template => sub
 
     # splice in our stuff after the preamble bits
     $self->log_fatal('failed to find position in Makefile.PL to munge!')
-        if $string !~ m/use warnings;\n\n/g;
+        if $string !~ m/\{\{ \$header \}\}\n/g;
 
     return substr($string, 0, pos($string)) . $self->__preamble . substr($string, pos($string));
 };

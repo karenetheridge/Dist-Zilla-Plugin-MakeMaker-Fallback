@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - regexp patterns tweaked that are used when Makefile.PL is munged,
+            to be more resilient against future layout changes
 
 0.021     2015-09-20 18:27:55Z
           - fix test that broke when [MakeMaker::Awesome] 0.35 added configs
