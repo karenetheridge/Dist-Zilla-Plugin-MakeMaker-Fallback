@@ -51,7 +51,7 @@ foreach my $eumm_version ('6.00', '0')
                     # and must be set to a number (not empty string) for
                     # Makefile.PL to come out right.
                     [ 'MakeMaker::Fallback' => { eumm_version => $eumm_version } ],
-                    [ 'ModuleBuildTiny' ],
+                    [ 'ModuleBuildTiny' => { version => 0 } ],
                     [ Prereqs => ConfigureRequires => { perl => '5.006' } ],
                 ),
             },

@@ -58,7 +58,7 @@ foreach my $extra_testing (undef, 1)
                     [ 'MetaJSON' ],
                     [ 'GatherDir' ],
                     [ 'MakeMaker::Fallback' ],
-                    [ 'ModuleBuildTiny' ],
+                    [ 'ModuleBuildTiny' => { version => 0 } ],
                     [ '=BuildMunger' ],
                 ),
                 path(qw(source lib Foo.pm)) => "package Foo;\n1;\n",

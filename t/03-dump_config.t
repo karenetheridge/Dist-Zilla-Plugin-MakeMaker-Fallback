@@ -18,7 +18,7 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 'GatherDir',
-                'ModuleBuildTiny',
+                [ 'ModuleBuildTiny' => { version => 0 } ],
                 'MakeMaker::Fallback',
                 'MetaConfig',
             ),
