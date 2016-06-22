@@ -6,7 +6,7 @@ use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::Fatal;
 use Test::DZil;
 use Test::Deep;
-use Path::Tiny;
+use Path::Tiny 0.062;
 
 {
     package Dist::Zilla::Plugin::BogusInstaller;
@@ -87,11 +87,10 @@ foreach my $eumm_version ('6.00', '0')
     );
 
     my @found_files;
-    my $iter = $build_dir->iterator({ recurse => 1 });
-    while (my $path = $iter->())
-    {
-        push @found_files, $path->relative($build_dir)->stringify if -f $path;
-    }
+    $build_dir->visit(
+        sub { push @found_files, $_->relative($build_dir)->stringify if -f },
+        { recurse => 1 },
+    );
 
     cmp_deeply(
         \@found_files,
