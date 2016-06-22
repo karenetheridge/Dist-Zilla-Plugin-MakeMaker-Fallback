@@ -7,7 +7,6 @@ use Test::Fatal;
 use Test::DZil;
 use Test::Deep;
 use Path::Tiny;
-use Capture::Tiny 'capture';
 
 {
     package Dist::Zilla::Plugin::BogusInstaller;

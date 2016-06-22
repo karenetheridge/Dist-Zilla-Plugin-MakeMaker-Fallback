@@ -6,7 +6,9 @@ use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::DZil;
 use Path::Tiny;
 use Test::Deep;
-use Capture::Tiny 'capture';
+
+use lib 't/lib';
+use RunTests;
 
 # build a dist with MBT and Fallback
 # include a simple test in the dist
@@ -68,14 +70,8 @@ foreach my $extra_testing (undef, 1)
 
     $tzil->chrome->logger->set_debug(1);
 
-    # the tests are run inside a 'prove', so there is no need to wrap them in
-    # a subtest - but we do need to indent the output
-    my ($stdout, $stderr, @result) = capture {
-        $tzil->test;
-    };
-
-    $stdout =~ s/^/    /gm;
-    print $stdout;
+    # $tzil->test, printing diagnostics on failure
+    runtests($tzil) || next;
 
     # I'm not really sure why the build seems to be getting run inside the
     # 'source' dir, rather than 'build' -- seems rather odd...

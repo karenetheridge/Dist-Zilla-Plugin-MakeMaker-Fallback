@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - display more diagnostics if 'perl Build.PL' failed to properly
+            execute in tests
 
 0.022     2016-03-20 00:47:39Z
           - regexp patterns tweaked that are used when Makefile.PL is munged,
