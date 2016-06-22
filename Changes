@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.023     2016-06-22 05:07:29Z
           - display more diagnostics if 'perl Build.PL' failed to properly
             execute in tests
 
