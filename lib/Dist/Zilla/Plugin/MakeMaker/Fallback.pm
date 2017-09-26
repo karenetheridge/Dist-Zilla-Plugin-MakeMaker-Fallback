@@ -160,7 +160,7 @@ C<configure_requires>:
 =head1 DESCRIPTION
 
 This plugin is a derivative of C<[MakeMaker]>, generating a F<Makefile.PL> in
-your dist, with an added preamble that is printed when it is run:
+your distribution, with an added preamble that is printed when it is run:
 
 =for stopwords cpanminus mb
 
