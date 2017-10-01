@@ -83,21 +83,27 @@ CODE
 CODE
     . "\x7d\x7d);\n" . <<'CODE'
 
-my @missing = grep {
-    ! eval "require $_; $_->VERSION($configure_requires{$_}); 1"
+my %errors = map {
+    eval "require $_; $_->VERSION($configure_requires{$_}); 1";
+    $_ => $@,
 } keys %configure_requires;
 
-if (@missing)
+if (grep { $_ } values %errors)
 {
-    if (not $ENV{PERL_MM_FALLBACK_SILENCE_WARNING})
-    {
-        warn <<'EOW';
+    warn "Errors from configure prereqs:\n"
+        . do {
+            require Data::Dumper; Data::Dumper->new([ \%errors ])->Indent(2)->Terse(1)->Sortkeys(1)->Dump;
+        };
+}
+
+if (not $ENV{PERL_MM_FALLBACK_SILENCE_WARNING})
+{
+    warn <<'EOW';
 CODE
-        . join('', <DATA>)
-        . <<'CODE';
+    . join('', <DATA>)
+    . <<'CODE';
 EOW
-        sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));
-    }
+    sleep 10 if -t STDIN && (-t STDOUT || !(-f STDOUT || -c STDOUT));
 }
 } # end BEGIN
 CODE
@@ -173,6 +179,9 @@ your distribution, with an added preamble that is printed when it is run:
 =end :verbatim
 
 =for stopwords ModuleBuildTiny
+
+Additionally, any errors resulting from loading configure-require prerequisites are captured and printed, which
+indicates a failure of the user or the tools to read and understand F<META.yml> or F<META.json>.
 
 It is a fatal error to use this plugin when there is not also another
 plugin enabled that generates a F<Build.PL> (such as

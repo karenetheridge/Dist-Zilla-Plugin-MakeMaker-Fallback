@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - always display warning message (unless environment variable used
+            to silence it), and dump the errors resulting from loading
+            configure-requires prereqs
 
 0.023     2016-06-22 05:07:29Z
           - display more diagnostics if 'perl Build.PL' failed to properly
