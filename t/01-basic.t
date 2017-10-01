@@ -70,6 +70,7 @@ foreach my $eumm_version ('6.00', '0')
             prereqs => superhashof({
                 configure => {
                     requires => {
+                        'ExtUtils::MakeMaker' => ignore,
                         'Module::Build::Tiny' => ignore,
                         'perl' => '5.006',
                     },

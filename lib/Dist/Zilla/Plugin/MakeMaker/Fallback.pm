@@ -28,12 +28,6 @@ around dump_config => sub
     return $config;
 };
 
-sub register_prereqs
-{
-    # block ExtUtils::MakeMaker from being added, since we expect Build.PL to
-    # be preferred (so the requirements for *that* file are what matters)
-}
-
 sub after_build
 {
     my $self = shift;
