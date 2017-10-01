@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
+{{$NEXT}}
+
 0.024     2017-10-01 22:01:52Z
           - always display warning message (unless environment variable used
             to silence it), and dump the errors resulting from loading
