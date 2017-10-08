@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - disable printing the Makefile.PL warning during 'dzil test
+            --release' and 'dzil release' operations, which run Makefile.PL as
+            well as Build.PL
 
 0.024     2017-10-01 22:01:52Z
           - always display warning message (unless environment variable used
