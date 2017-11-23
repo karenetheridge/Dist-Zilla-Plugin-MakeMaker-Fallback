@@ -212,9 +212,9 @@ for that...)
 __DATA__
 *** WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING ***
 
-If you're seeing this warning, your toolchain is really, really old* and you'll
-almost certainly have problems installing CPAN modules from this century. But
-never fear, dear user, for we have the technology to fix this!
+If you're seeing this warning, your toolchain is really, really old* and
+you'll almost certainly have problems installing CPAN modules from this
+century. But never fear, dear user, for we have the technology to fix this!
 
 If you're using CPAN.pm to install things, then you can upgrade it using:
 
@@ -227,7 +227,8 @@ If you're using CPANPLUS to install things, then you can upgrade it using:
 If you're using cpanminus, you shouldn't be seeing this message in the first
 place, so please file an issue on github.
 
-If you're using a packaging tool through a unix distribution, this issue should be reported to the package manager.
+If you're using a packaging tool through a unix distribution, this issue
+should be reported to the package manager.
 
 If you're installing manually, please retrain your fingers to run Build.PL
 when present instead of Makefile.PL.
