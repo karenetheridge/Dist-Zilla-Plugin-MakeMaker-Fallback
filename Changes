@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
+{{$NEXT}}
+
 0.026     2017-12-11 03:01:32Z
           - warning messages shown to the user are text-wrapped to 78 chars
           - fix printing the Makefile.PL warning during 'dzil run' (and other
