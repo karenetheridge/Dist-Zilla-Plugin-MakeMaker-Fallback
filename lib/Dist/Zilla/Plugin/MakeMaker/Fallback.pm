@@ -121,6 +121,11 @@ around _build_MakeFile_PL_template => sub
     return substr($string, 0, pos($string)) . $self->__preamble . substr($string, pos($string));
 };
 
+sub build {
+    my $self = shift;
+    $self->log_debug('doing nothing during build...');
+}
+
 sub test
 {
     my $self = shift;
