@@ -113,6 +113,7 @@ around _build_MakeFile_PL_template => sub
     # strip out the hard VERSION requirement - be gentle to users that failed
     # to satisfy configure_requires
     $string =~ s/^use ExtUtils::MakeMaker\K[^\n]+;$/;/m;
+    $string =~ s/^\{\{[^\n]+BEGIN \{ ExtUtils::MakeMaker->VERSION\('\$eumm_version'\) }[^\n]+}}$//m;
 
     # splice in our stuff after the preamble bits
     $self->log_fatal('failed to find position in Makefile.PL to munge!')
