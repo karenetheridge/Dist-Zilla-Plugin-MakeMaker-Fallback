@@ -125,6 +125,14 @@ foreach my $eumm_version ('6.00', '0')
             . ' eumm_version was specified)',
     );
 
+    unlike(
+        $Makefile_PL_content,
+        qr/^[^#]*BEGIN\s*\{\s*ExtUtils::MakeMaker->VERSION\('/m,
+        'ExtUtils::MakeMaker->VERSION not asserted (when '
+            . ($eumm_version ? 'a' : 'no')
+            . ' eumm_version was specified)',
+    );
+
     like(
         $Makefile_PL_content,
         qr/^use ExtUtils::MakeMaker;$/m,
