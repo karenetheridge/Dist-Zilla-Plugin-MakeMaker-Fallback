@@ -1,6 +1,10 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - add new skip_release_testing configuration option, for the rare
+            distribution where running 'make test' alongside './Build test'
+            (which only happened when RELEASE_TESTING=1) is a really really
+            bad idea.
 
 0.027     2018-06-17 23:55:09Z
           - fix test failures with Dist::Zilla::Plugin::MakeMaker::Awesome

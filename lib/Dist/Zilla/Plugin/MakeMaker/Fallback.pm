@@ -15,6 +15,11 @@ use List::Util 'first';
 use version;
 use namespace::autoclean;
 
+has skip_release_testing => (
+    is => 'ro',
+    isa => 'Bool',
+);
+
 around dump_config => sub
 {
     my ($orig, $self) = @_;
@@ -22,6 +27,7 @@ around dump_config => sub
 
     my $data = {
         blessed($self) ne __PACKAGE__ ? ( version => $VERSION ) : (),
+        skip_release_testing => ($self->skip_release_testing ? 1 : 0),
     };
     $config->{+__PACKAGE__} = $data if keys %$data;
 
@@ -130,7 +136,7 @@ sub test
 {
     my $self = shift;
 
-    if ($ENV{RELEASE_TESTING})
+    if ($ENV{RELEASE_TESTING} and not $self->skip_release_testing)
     {
         # we are either performing a 'dzil test' with RELEASE_TESTING set, or
         # a 'dzil release' -- the Build.PL plugin will run tests with extra
@@ -192,6 +198,8 @@ plugin, C<dzil test --release> or C<dzil release> will run tests with extra
 testing variables B<unset> (C<AUTHOR_TESTING>, C<RELEASE_TESTING>). This is to
 weed out test issues that only manifest under these conditions (for example:
 bad test count, conditional module loading).
+You can prevent this extra testing from happening by setting C<skip_release_testing = 1>
+in your configuration or F<dist.ini>.
 
 =head1 ACKNOWLEDGEMENTS
 
