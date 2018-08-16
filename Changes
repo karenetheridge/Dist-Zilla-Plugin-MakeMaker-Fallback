@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.028     2018-08-16 03:15:58Z
           - add new skip_release_testing configuration option, for the rare
             distribution where running 'make test' alongside './Build test'
             (which only happened when RELEASE_TESTING=1) is a really really

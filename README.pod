@@ -8,7 +8,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 =head1 VERSION
 
-version 0.027
+version 0.028
 
 =head1 SYNOPSIS
 
@@ -79,6 +79,8 @@ plugin, C<dzil test --release> or C<dzil release> will run tests with extra
 testing variables B<unset> (C<AUTHOR_TESTING>, C<RELEASE_TESTING>). This is to
 weed out test issues that only manifest under these conditions (for example:
 bad test count, conditional module loading).
+You can prevent this extra testing from happening by setting C<skip_release_testing = 1>
+in your configuration or F<dist.ini>.
 
 =head1 ACKNOWLEDGEMENTS
 
