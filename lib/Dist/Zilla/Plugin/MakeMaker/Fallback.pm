@@ -9,7 +9,7 @@ our $VERSION = '0.029';
 
 use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.26' };
-with 'Dist::Zilla::Role::AfterBuild' => { -excludes => 'dump_config' };
+with 'Dist::Zilla::Role::AfterBuild' => { -excludes => [qw(dump_config mvp_multivalue_args mvp_aliases)] };
 
 use List::Util 'first';
 use version;
