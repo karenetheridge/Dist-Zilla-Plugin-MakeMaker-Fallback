@@ -76,10 +76,10 @@ CODE
     # those out for now, as this shouldn't occur that frequently.  There is no
     # point in using CPAN::Meta, as that wasn't in core in the range of perl
     # versions that is likely to not have satisfied these prereqs.
-    delete @{$configure_requires}{ grep { not version::is_strict($configure_requires->{$_}) } keys %$configure_requires };
-    join('', map {
-            "    '$_' => '$configure_requires->{$_}',\n"
-        } sort keys %$configure_requires)
+    delete @{$configure_requires}{ grep !version::is_strict($configure_requires->{$_}), keys %$configure_requires };
+    join('', map
+            "    '$_' => '$configure_requires->{$_}',\n",
+            sort keys %$configure_requires)
 CODE
     . "\x7d\x7d);\n" . <<'CODE'
 
@@ -88,7 +88,7 @@ my %errors = map {
     $_ => $@,
 } keys %configure_requires;
 
-if (grep { $_ } values %errors)
+if (grep $_, values %errors)
 {
     warn "Errors from configure prereqs:\n"
         . do {
