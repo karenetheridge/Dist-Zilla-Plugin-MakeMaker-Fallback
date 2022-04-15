@@ -11,8 +11,9 @@ use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.47' };
 with 'Dist::Zilla::Role::AfterBuild' => { -excludes => [qw(dump_config mvp_multivalue_args mvp_aliases)] };
 
-use List::Keywords 0.03 'first';
+use List::Keywords 0.03 qw(first any);
 use version;
+use Path::Tiny;
 use namespace::autoclean;
 
 has skip_release_testing => (
@@ -44,6 +45,10 @@ sub after_build
 
     my $build_pl = first { $_->name eq 'Build.PL' } @{ $self->zilla->files };
     $self->log_fatal('No Build.PL found to fall back from!') if not $build_pl;
+
+    $self->log('share/ files present: did you forget to include [ShareDir]?')
+      if any { path('share')->subsumes($_->name) } @{ $self->zilla->files }
+        and not @{ $self->zilla->plugins_with(-ShareDir) };
 }
 
 around _build_WriteMakefile_args => sub
