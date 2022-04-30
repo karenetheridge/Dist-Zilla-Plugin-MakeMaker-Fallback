@@ -11,7 +11,7 @@ use Moose;
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome' => { -version => '0.47' };
 with 'Dist::Zilla::Role::AfterBuild' => { -excludes => [qw(dump_config mvp_multivalue_args mvp_aliases)] };
 
-use List::Keywords 0.03 qw(first any);
+use List::Util 1.33 qw(first any);
 use version;
 use Path::Tiny;
 use namespace::autoclean;
