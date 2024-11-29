@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
-{{$NEXT}}
+0.033     2024-11-29 22:03:47Z
           - improvements to warning message in generated Makefile.PL
 
 0.032     2022-04-30 19:48:38Z

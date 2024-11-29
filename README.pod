@@ -8,7 +8,7 @@ Dist::Zilla::Plugin::MakeMaker::Fallback - Generate a Makefile.PL containing a w
 
 =head1 VERSION
 
-version 0.032
+version 0.033
 
 =head1 SYNOPSIS
 
@@ -48,7 +48,8 @@ your distribution, with an added preamble that is printed when it is run:
     place, so please file an issue on github.
 
     If you're using a packaging tool through a unix distribution, this issue
-    should be reported to the package manager.
+    should be reported to the package manager. Remember: build tools should always
+    favour Build.PL over Makefile.PL, and (MY)?META.json over (MY)?META.yml.
 
     If you're installing manually, please retrain your fingers to run Build.PL
     when present instead of Makefile.PL.
