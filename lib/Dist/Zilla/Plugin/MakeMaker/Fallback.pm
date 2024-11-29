@@ -246,7 +246,8 @@ If you're using cpanminus, you shouldn't be seeing this message in the first
 place, so please file an issue on github.
 
 If you're using a packaging tool through a unix distribution, this issue
-should be reported to the package manager.
+should be reported to the package manager. Remember: build tools should always
+favour Build.PL over Makefile.PL, and (MY)?META.json over (MY)?META.yml.
 
 If you're installing manually, please retrain your fingers to run Build.PL
 when present instead of Makefile.PL.

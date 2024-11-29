@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MakeMaker-Fallback
 
 {{$NEXT}}
+          - improvements to warning message in generated Makefile.PL
 
 0.032     2022-04-30 19:48:38Z
           - revert the use of List::Keywords, for now
