@@ -21,8 +21,7 @@ has skip_release_testing => (
     isa => 'Bool',
 );
 
-around dump_config => sub
-{
+around dump_config => sub {
     my ($orig, $self) = @_;
     my $config = $self->$orig;
 
@@ -35,8 +34,7 @@ around dump_config => sub
     return $config;
 };
 
-sub after_build
-{
+sub after_build {
     my $self = shift;
 
     # if Makefile.PL is missing, someone removed it (probably a bad thing)
@@ -51,8 +49,7 @@ sub after_build
         and not @{ $self->zilla->plugins_with(-ShareDir) };
 }
 
-around _build_WriteMakefile_args => sub
-{
+around _build_WriteMakefile_args => sub {
     my $orig = shift;
     my $self = shift;
     my $WriteMakefile_args = $self->$orig(@_);
@@ -63,8 +60,7 @@ around _build_WriteMakefile_args => sub
     };
 };
 
-sub __preamble
-{
+sub __preamble {
     # this module file gets passed through a template itself at build time, so
     # we need to escape these template markers so they survive
 
@@ -101,8 +97,7 @@ if (grep $_, values %errors)
         };
 }
 
-if (not $ENV{PERL_MM_FALLBACK_SILENCE_WARNING})
-{
+if (not $ENV{PERL_MM_FALLBACK_SILENCE_WARNING}) {
     warn <<'EOW';
 CODE
     . join('', <DATA>)
@@ -114,8 +109,7 @@ EOW
 CODE
 }
 
-around _build_MakeFile_PL_template => sub
-{
+around _build_MakeFile_PL_template => sub {
     my $orig = shift;
     my $self = shift;
 
@@ -137,12 +131,10 @@ sub build {
     $self->log_debug('doing nothing during build...');
 }
 
-sub test
-{
+sub test {
     my $self = shift;
 
-    if ($ENV{RELEASE_TESTING} and not $self->skip_release_testing)
-    {
+    if ($ENV{RELEASE_TESTING} and not $self->skip_release_testing) {
         # we are either performing a 'dzil test' with RELEASE_TESTING set, or
         # a 'dzil release' -- the Build.PL plugin will run tests with extra
         # variables set, so as an extra check, we will perform them without.
@@ -153,8 +145,7 @@ sub test
         $self->log_debug('performing test with RELEASE_TESTING, AUTHOR_TESTING unset');
         return $self->next::method(@_);
     }
-    else
-    {
+    else {
         $self->log_debug('doing nothing during test...');
     }
 }
